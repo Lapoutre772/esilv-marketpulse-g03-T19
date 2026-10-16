@@ -31,8 +31,8 @@ def get_first_close():
         print(float(prices[0]["close"]))
 
 def display_market_summary(asset, prices,show_currency=True):
-    print ( get_first_close())
-     
+
+
 
 
 def main():
