@@ -25,10 +25,20 @@ def load_prices():
 def filter_prices(prices, ticker):
     return [row for row in prices if row["ticker"] == ticker]
 
+def get_first_close():
+    with open(DATA_DIR / "prices.csv", encoding="utf-8") as file:
+        prices= list(csv.DictReader(file))    
+        print(float(prices[0]["close"]))
+
+def display_market_summary(asset, prices,show_currency=True):
+    print ( get_first_close())
+     
+
 
 def main():
     instruments = load_instruments()
     prices = load_prices()
+    first = get_first_close()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
