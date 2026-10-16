@@ -14,7 +14,8 @@ Copy this file to `TEAM.md` in your team repository and complete it before start
 |---|---|
 | Léopold Lefébure | @LeopoldLef |
 | Maxence Batongue | @Lapoutre772 |
-| Alban | @Albadu78 |
+| Alban Deboichet | @Albadu78 |
+| Malo Grasmuck | @Malog7 |
 
 Add a fourth row only if your team has four members.
 
