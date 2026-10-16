@@ -5,16 +5,16 @@ Copy this file to `TEAM.md` in your team repository and complete it before start
 ## Course
 
 - Module: MESIFI472326 - Python, Git, Linux
-- TD Group: GXX
-- MarketPulse Team: TXX
+- TD Group: G03
+- MarketPulse Team: T19
 
 ## Members
 
 | Full name | GitHub username |
 |---|---|
-| Léopold Lefébure | @github-user-1 |
-| Student 2 | @github-user-2 |
-| Student 3 | @github-user-3 |
+| Léopold Lefébure | @LeopoldLef |
+| Maxence Batongue | @Lapoutre772 |
+| Alban | @Albadu78 |
 
 Add a fourth row only if your team has four members.
 
