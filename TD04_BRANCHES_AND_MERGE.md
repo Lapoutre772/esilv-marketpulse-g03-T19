@@ -451,9 +451,7 @@ git branch -d feature/display-observation-dates
 Then:
 
 ```bash
-git branch
-git log --oneline --graph --decorate --all
-```
+gigit diff
 
 The important history remains even after the local branch name is removed.
 
