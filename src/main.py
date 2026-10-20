@@ -30,7 +30,7 @@ def get_first_close():
         prices= list(csv.DictReader(file))    
         print(float(prices[0]["close"]))
 
-def display_market_summary(asset, prices,show_currency=True):
+
 
 
 
@@ -66,6 +66,11 @@ def main():
     print(f"{instrument['ticker']}: {len(instrument_prices)}")
     print(f"{benchmark['ticker']}: {len(benchmark_prices)}")
 
+def get_first_date(prices):
+    return prices[0]["date"]
 
+
+def get_last_date(prices):
+    return prices[-1]["date"]
 if __name__ == "__main__":
     main()
