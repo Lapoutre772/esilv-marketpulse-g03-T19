@@ -1,0 +1,36 @@
+[1mdiff --git a/src/main.py b/src/main.py[m
+[1mindex e54c0dc..b75df84 100644[m
+[1m--- a/src/main.py[m
+[1m+++ b/src/main.py[m
+[36m@@ -21,6 +21,12 @@[m [mdef load_prices():[m
+     with open(DATA_DIR / "prices.csv", encoding="utf-8") as file:[m
+         return list(csv.DictReader(file))[m
+ [m
+[32m+[m[32mdef get_first_date(prices):[m
+[32m+[m[32m    return prices[0]["date"][m
+[32m+[m
+[32m+[m[32mdef get_last_date(prices):[m
+[32m+[m[32m    return prices[-1]["date"][m
+[32m+[m
+ [m
+ def filter_prices(prices, ticker):[m
+     return [row for row in prices if row["ticker"] == ticker][m
+[36m@@ -30,7 +36,6 @@[m [mdef get_first_close():[m
+         prices= list(csv.DictReader(file))    [m
+         print(float(prices[0]["close"]))[m
+ [m
+[31m-def display_market_summary(asset, prices,show_currency=True):[m
+ [m
+ [m
+ [m
+[36m@@ -65,6 +70,10 @@[m [mdef main():[m
+     print("Observations")[m
+     print(f"{instrument['ticker']}: {len(instrument_prices)}")[m
+     print(f"{benchmark['ticker']}: {len(benchmark_prices)}")[m
+[32m+[m[32m    print()[m
+[32m+[m[32m    print("Observation dates")[m
+[32m+[m[32m    print(f"{instrument['ticker']}: {get_first_date(instrument_prices)} -> {get_last_date(instrument_prices)}")[m
+[32m+[m[32m    print(f"{benchmark['ticker']}: {get_first_date(benchmark_prices)} -> {get_last_date(benchmark_prices)}")[m
+ [m
+ [m
+ if __name__ == "__main__":[m
