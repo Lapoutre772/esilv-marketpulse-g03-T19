@@ -36,10 +36,9 @@ def get_first_close():
         prices= list(csv.DictReader(file))    
         print(float(prices[0]["close"]))
 
-<<<<<<< HEAD
 
-=======
->>>>>>> f147256 (feat: display first and last observation dates)
+
+
 
 
 
