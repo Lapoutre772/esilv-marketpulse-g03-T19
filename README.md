@@ -204,6 +204,34 @@ These are the two canonical CORE runtime commands.
 
 The instructor starter repository does not necessarily contain every later-stage student file on day one. Files appear progressively during the lab sequence.
 
+## Quick start (TD01-TD06)
+
+From the repository root:
+
+```bash
+python --version
+python src/main.py
+```
+
+Notes:
+
+- Run the command **from the repository root**. `src/main.py` reads
+  `data/sample/` through a relative path, so running it from `src/`
+  or another directory fails.
+- The starter path needs Python 3 and the standard library only.
+  No `pip install` is required before TD08.
+- The terminal output starts with `=== MarketPulse ===` and then shows
+  an `Instrument` block, a `Benchmark` block, the period and the interval.
+
+Common errors:
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| `FileNotFoundError: data/sample/instruments.json` | command run from the wrong directory | `cd` to the repository root |
+| `python: command not found` | Python alias differs | try `python3 src/main.py` |
+| `SyntaxError` mentioning `<<<<<<<` | unresolved merge conflict markers in a file | resolve the conflict, then commit |
+
+
 ## Installation
 
 The starter TD01-TD02 path uses only the Python standard library.
