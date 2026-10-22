@@ -1,8 +1,10 @@
 """MarketPulse analytics: pure functions for comparison (TD07)."""
 
-
 def index_by_date(prices):
-    raise NotImplementedError
+    indexed = {}
+    for row in prices:
+        indexed[row["date"]] = row
+    return indexed
 
 
 def align_series(instrument_prices, benchmark_prices):
