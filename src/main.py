@@ -1,7 +1,7 @@
 from pathlib import Path
 import csv
 import json
-
+from analytics import align_series
 
 DATA_DIR = Path("data/sample")
 
@@ -46,14 +46,16 @@ def get_first_close():
 def main():
     instruments = load_instruments()
     prices = load_prices()
-    first = get_first_close()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
 
     instrument_prices = filter_prices(prices, instrument["ticker"])
     benchmark_prices = filter_prices(prices, benchmark["ticker"])
-
+    instrument_prices, benchmark_prices = align_series(
+    instrument_prices,
+    benchmark_prices
+)   
     instrument_latest = instrument_prices[-1]
     benchmark_latest = benchmark_prices[-1]
 
