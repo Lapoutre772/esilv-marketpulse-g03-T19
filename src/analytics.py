@@ -41,4 +41,4 @@ def calculate_base_100(prices):
 
 
 def calculate_relative_performance(instrument_return, benchmark_return):
-    raise NotImplementedError
+        return instrument_return - benchmark_return
