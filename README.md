@@ -204,6 +204,8 @@ These are the two canonical CORE runtime commands.
 
 The instructor starter repository does not necessarily contain every later-stage student file on day one. Files appear progressively during the lab sequence.
 
+# Version Améliorée
+
 ## Installation
 
 The starter TD01-TD02 path uses only the Python standard library.
