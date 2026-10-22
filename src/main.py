@@ -46,7 +46,6 @@ def get_first_close():
 def main():
     instruments = load_instruments()
     prices = load_prices()
-    first = get_first_close()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
@@ -58,6 +57,8 @@ def main():
     benchmark_latest = benchmark_prices[-1]
 
     print("=== MarketPulse ===")
+    print()
+    print("Provider: CSV")
     print()
     print("Instrument")
     print(f"{instrument['ticker']} - {instrument['name']}")
