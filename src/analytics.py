@@ -37,16 +37,12 @@ def align_series(instrument_prices, benchmark_prices):
 
 def calculate_period_return(prices):
     if not prices:
-        raise ValueError("La liste est vide")
-
+        raise ValueError("Cannot compute a return on an empty series")
     first_close = float(prices[0]["close"])
     last_close = float(prices[-1]["close"])
-
-    if first_close == 0:
-        raise ValueError("Le premier prix est égal à zéro")
-
-    return (last_close / first_close - 1) * 100
-
+    if first_close == 0.0:
+        raise ValueError("First close is zero: return is undefined")
+    return ((last_close / first_close) - 1.0) * 100.0
 
 
 
