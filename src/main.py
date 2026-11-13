@@ -1,7 +1,13 @@
 from pathlib import Path
 import csv
 import json
-from analytics import align_series
+from src.analytics import (
+    align_series,
+    calculate_period_return,
+    calculate_base_100,
+    calculate_relative_performance
+)
+from src.providers.yahoo_provider import fetch_yahoo_prices
 
 DATA_DIR = Path("data/sample")
 
@@ -42,16 +48,21 @@ def get_first_close():
 
 
 
-
+PROVIDER = "yahoo"
 def main():
     instruments = load_instruments()
-    prices = load_prices()
 
     instrument = instruments["instrument"]
     benchmark = instruments["benchmark"]
 
-    instrument_prices = filter_prices(prices, instrument["ticker"])
-    benchmark_prices = filter_prices(prices, benchmark["ticker"])
+    if PROVIDER == "yahoo":
+        instrument_prices = fetch_yahoo_prices(instrument["ticker"])
+        benchmark_prices = fetch_yahoo_prices(benchmark["ticker"])
+    else:
+        prices = load_prices()
+        instrument_prices = filter_prices(prices, instrument["ticker"])
+        benchmark_prices = filter_prices(prices, benchmark["ticker"])
+
     instrument_prices, benchmark_prices = align_series(
     instrument_prices,
     benchmark_prices
@@ -81,6 +92,28 @@ def main():
     print("==Observation dates==")
     print(f"{instrument['ticker']}: {get_first_date(instrument_prices)} -> {get_last_date(instrument_prices)}")
     print(f"{benchmark['ticker']}: {get_first_date(benchmark_prices)} -> {get_last_date(benchmark_prices)}")
+
+    instrument_return = calculate_period_return(instrument_prices)
+    benchmark_return = calculate_period_return(benchmark_prices)
+
+    relative = calculate_relative_performance(
+        instrument_return, benchmark_return
+    )
+
+    instrument_base = calculate_base_100(instrument_prices)
+    benchmark_base = calculate_base_100(benchmark_prices)
+
+    print()
+    print("=== Comparison ===")
+    print(f"Aligned sessions: {len(instrument_prices)}")
+    print(f"AAPL return: {instrument_return:+.2f}%")
+    print(f"SP500 return: {benchmark_return:+.2f}%")
+    print(f"Relative performance: {relative:+.2f} percentage points")
+
+    print()
+    print("=== Base 100 ===")
+    print(f"AAPL: {instrument_base[0]['value']:.2f} -> {instrument_base[-1]['value']:.2f}")
+    print(f"SP500: {benchmark_base[0]['value']:.2f} -> {benchmark_base[-1]['value']:.2f}")
 
 def get_first_date(prices):
     return prices[0]["date"]
