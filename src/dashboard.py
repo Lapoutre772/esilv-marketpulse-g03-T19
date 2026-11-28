@@ -11,7 +11,38 @@ def build_information(snapshot):
 
 def build_figure(snapshot):
     """Student 3: base-100 chart."""
-    return go.Figure()
+    instrument = snapshot["instrument"]
+    benchmark = snapshot["benchmark"]
+    instrument_base_100 = snapshot["instrument_base_100"]
+    benchmark_base_100 = snapshot["benchmark_base_100"]
+
+    figure = go.Figure()
+
+    figure.add_trace(
+        go.Scatter(
+            x=[row["date"] for row in instrument_base_100],
+            y=[row["value"] for row in instrument_base_100],
+            mode="lines",
+            name=instrument["ticker"],
+        )
+    )
+
+    figure.add_trace(
+        go.Scatter(
+            x=[row["date"] for row in benchmark_base_100],
+            y=[row["value"] for row in benchmark_base_100],
+            mode="lines",
+            name=benchmark["ticker"],
+        )
+    )
+
+    figure.update_layout(
+        title="Instrument vs Benchmark - Base 100",
+        xaxis_title="Date",
+        yaxis_title="Base 100",
+    )
+
+    return figure
 
 
 snapshot = build_market_snapshot()
